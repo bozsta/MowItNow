@@ -28,7 +28,17 @@ class Mower {
       A: [1, 0]
     }
   }
+  
+  orientationArr = ['N', 'E', 'S', 'W']
 
+  nextindex = (currentIndex, length) => {
+    return (currentIndex + 1) % length
+  }
+
+  prevIndex =  (currentIndex, length) => {
+    return (currentIndex - 1 + length) % length
+  }
+  
   checkAreaData = (areaArr) => {
     if (!areaArr || !Array.isArray(areaArr)) {
       throw new Error('[Area Data] data must be an array')
@@ -56,20 +66,22 @@ class Mower {
     if (PositionArr.length !== 3) {
       throw new Error('[Position Data] Unexpected number of data')
     }
-    if (isNaN(PositionArr[0]) || isNaN(PositionArr[1])) {
+    // to finish
+    let [xPosition, yPosition, oreintation] = PositionArr
+    if (isNaN(xPosition) || isNaN(yPosition)) {
       throw new Error('[Position Data] Two first values must be numbers')
     }
-    PositionArr[0] = Number(PositionArr[0])
-    PositionArr[1] = Number(PositionArr[1])
-    if (!Number.isInteger(PositionArr[0]) || !Number.isInteger(PositionArr[1])
-      || PositionArr[0] < 0 || PositionArr[1] < 0) {
+    xPosition = Number(xPosition)
+    yPosition = Number(yPosition)
+    if (!Number.isInteger(xPosition) || !Number.isInteger(yPosition)
+      || xPosition < 0 || yPosition < 0) {
       throw new Error('[Position Data] Two first values must be positive integer')
     }
-    if (PositionArr[0] > this.area[0] || PositionArr[1] > this.area[1]) {
+    if (xPosition > this.area[0] || yPosition > this.area[1]) {
       throw new Error('[Position Data] initial position is out of area')
     }
-    PositionArr[2] = PositionArr[2].toUpperCase()
-    if (!(/N|W|S|E/).test(PositionArr[2]) || PositionArr[2].length !== 1) {
+    oreintation = oreintation.toUpperCase()
+    if (!(/N|W|S|E/).test(oreintation) || oreintation.length !== 1) {
       throw new Error('[Position Data] unexpected orientation value')
     }
     this.position = PositionArr
