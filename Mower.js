@@ -113,7 +113,6 @@ class Mower {
     if (!Array.isArray(positionArr) || !Array.isArray(moves)) {
       throw new Error('[Process] Arguments must be array')
     }
-    /// let nextPosition = [...positionArr]
     let [xPosition, yPosition, orientation] = positionArr
     moves.forEach(move => {
       if ( move === 'D') {
@@ -128,37 +127,11 @@ class Mower {
         yPosition += moveObj[1] 
       }
       const nextPosition = [xPosition, yPosition, orientation] 
-      // positionArr =  this.checkbeforeMove(nextPosition) ? [...nextPosition] : [...positionArr]
       this.position =  this.checkbeforeMove(nextPosition) ? [...nextPosition] : [...positionArr]
       
     })
     return `Final posirion : [${this.position}]`
    }
-/*   process = (positionArr, moves) => {
-    if (!positionArr || !moves) {
-      throw new Error('[Process] Missing Arguments')
-    }
-    if (!Array.isArray(positionArr) || !Array.isArray(moves)) {
-      throw new Error('[Process] Arguments must be array')
-    }
-    let nextPosition = [...positionArr]
-    let [xPosition, yPosition, oreintation] = positionArr
-    moves.forEach(move => {
-      let orientation = positionArr[2]
-      const moveObj = this.moveObj[orientation][move]
-      if (Array.isArray(moveObj)) {
-        for (let i = 0; i < moveObj.length; i++) {
-          nextPosition[i] += moveObj[i]
-        }
-      } else {
-        nextPosition[2] = moveObj
-        // oreintation = moveObj
-      }
-      positionArr =  this.checkbeforeMove(nextPosition) ? [...nextPosition] : [...positionArr]
-    })
-    this.position = positionArr
-    return `Final posirion : [${this.position}]`
-  } */
 
   init = () => { 
     try {
