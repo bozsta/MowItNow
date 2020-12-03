@@ -1,4 +1,5 @@
 # MowItNow
+![Node.js CI](https://github.com/bozsta/MowItNow/workflows/Node.js%20CI/badge.svg)
 
 Exercice de développement - La tondeuse
 
